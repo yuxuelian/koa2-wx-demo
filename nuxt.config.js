@@ -56,6 +56,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    analyze: false,
     /*
     ** You can extend webpack config here
     */

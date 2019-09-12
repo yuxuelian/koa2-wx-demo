@@ -18,5 +18,6 @@ const redisCli = new Redis({
     }
   }
 })
+// 测试写入
 redisCli.set('redis-test', new Date(), 'EX', 86400)
 export default redisCli

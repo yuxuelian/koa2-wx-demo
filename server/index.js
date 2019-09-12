@@ -49,8 +49,8 @@ connection.on('open', function (callback) {
 // 静态资源
 app.use(koaStatic(__dirname + '/static'))
 // routes 路由中间件需要在最后使用
-app.use(indexRoute.routes(), indexRoute.allowedMethods())
-app.use(usersRoute.routes(), usersRoute.allowedMethods())
+app.use(indexRoute.routes())
+app.use(usersRoute.routes())
 
 async function start() {
   // Instantiate nuxt.js

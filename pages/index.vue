@@ -3,7 +3,7 @@
     <div>
       <logo/>
       <h1 class="title">
-        koa2-wx-demo
+        {{title}}
       </h1>
       <h2 class="subtitle">
         My solid Nuxt.js project
@@ -30,17 +30,40 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import axios from 'axios'
 export default {
   components: {
     Logo
   },
+  async asyncData() {
+    try {
+      const res = await axios.get('/users/json')
+      console.log(res)
+      return {title: res.data.title}
+    } catch (e) {
+      console.log(e)
+      return {title: '错误'}
+    }
+  },
   mounted() {
+    console.log(axios)
     this.$axios.get('/proxy/comment/music?id=186016&limit=1').then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
     })
     this.$axios.get('/users/json').then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
     })
+
+    // 最原始的http请求  所有框架都是基于这个封装
+    let xhr = new XMLHttpRequest()
+    xhr.open('get', '/users/json', true)
+    xhr.send(null)
+    xhr.onreadystatechange = () => {
+      console.log('XMLHttpRequest 响应', xhr)
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText)
+      }
+    }
   }
 }
 </script>

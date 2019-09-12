@@ -12,7 +12,7 @@ users.get('/json', async (ctx) => {
   ctx.cookies.set('pvid', Math.random())
   ctx.session.jsonCount++
   ctx.body = {
-    title: 'koa2 json'
+    title: '测试 json 接口'
   }
 })
 export default users
